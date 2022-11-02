@@ -1,11 +1,7 @@
--- Lists all comedy shows in the database hbtn_0d_tvshows.
--- Records are ordered by descending show title.
-SELECT t.`title`
-  FROM `tv_shows` AS t
-       INNER JOIN `tv_show_genres` AS s
-       ON t.`id` = s.`show_id`
+-- Uses the hbtn_0d_tvshows database to llists all Comedy shows.
 
-       INNER JOIN `tv_genres` AS g
-       ON g.`id` = s.`genre_id`
-       WHERE g.`name` = "Comedy"
- ORDER BY t.`title`;
+  SELECT s.title
+    FROM (tv_genres g JOIN tv_show_genres sg ON g.id = sg.genre_id)
+    JOIN tv_shows s ON sg.show_id = s.id
+   WHERE g.name = "Comedy"
+ORDER BY s.title ASC;
