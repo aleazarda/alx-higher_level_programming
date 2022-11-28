@@ -1,3 +1,3 @@
 #!/usr/bin/node
-'use strict';
-console.log('C is fun\nPython is cool\nJavascript is amazing');
+// 'use strict';
+console.log('C is fun\n Python is cool\n Javascript is amazing');
