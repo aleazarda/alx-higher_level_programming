@@ -1,11 +1,9 @@
 #!/usr/bin/node
-'use strict';
-let x = process.argv[2];
-function factorial (x) {
-  if (isNaN(x) || x === 1) {
-    return (1);
+function fact (n) {
+  if (n === 0 || isNaN(n)) {
+    return 1;
   } else {
-    return (x * factorial(x - 1));
+    return n * fact(n - 1);
   }
 }
-console.log(factorial(parseInt(x)));
+console.log(fact(Number(process.argv[2])));
