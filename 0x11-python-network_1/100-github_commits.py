@@ -11,7 +11,7 @@ if __name__ == "__main__":
         repository_name = sys.argv[1]
         owner_name = sys.argv[2]
         api_url = 'https://developer.github.com'
-        req_url = 'v3/repos/commits?{}'.format(
+        req_url = '{}/repos/{}/{}/commits?{}'.format(
             api_url,
             owner_name,
             repository_name,
