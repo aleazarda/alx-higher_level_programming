@@ -1,25 +1,28 @@
 #!/usr/bin/python3
-"""Prints the GitHub id of a user."""
-import sys
+"""Retrieves the last 10 commits of a repository.
+Usage: ./100-github_commits.py repository_name repository_owner_name
+"""
 import requests
+import sys
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     if len(sys.argv) > 2:
-        url = "https://api.github.com/user"
-        username = sys.argv[1]
-        password = sys.argv[2]
-        req_headers = {
-            'Accept': 'application/vnd.github.v3+json',
-            'Username': username,
-            'Authorization': 'token {}'.format(password),
-        }
-        response = requests.get(url, headers=req_headers)
+        repository_name = sys.argv[1]
+        owner_name = sys.argv[2]
+        api_url = 'https://developer.github.com'
+        req_url = '{}/repos/{}/{}/commits?{}'.format(
+            api_url,
+            owner_name,
+            repository_name,
+            'per_page=10'
+        )
+        response = requests.get(
+            req_url,
+            headers={'Accept': 'application/vnd.github.v3+json'}
+        )
         if response.status_code == 200:
-            user = response.json()
-            if user['login'] == username:
-                print(user['id'])
-            else:
-                print('None')
-        else:
-            print('None')
+            for commit in response.json():
+                commit_sha = commit['sha']
+                commit_author = commit['commit']['author']['name']
+                print('{}: {}'.format(commit_sha, commit_author))
