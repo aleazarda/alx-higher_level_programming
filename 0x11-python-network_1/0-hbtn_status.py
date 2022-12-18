@@ -1,9 +1,6 @@
 #!/usr/bin/python3
 """Fetches a URL."""
 import urllib.request as request
-
-
-
 if __name__ == "__main__":
     with request.urlopen("https://alx-intranet.hbtn.io/status") as response:
         if response.readable():
