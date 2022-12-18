@@ -2,7 +2,7 @@
 """Fetches a URL."""
 import urllib.request as request
 if __name__ == "__main__":
-    with request.urlopen("https://alx-intranet.hbtn.io/status") as response:
+    with request.urlopen("https://intranet.hbtn.io/status") as response:
         if response.readable():
             data = response.read()
             print("Body response:")
